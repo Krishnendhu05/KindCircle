@@ -1,0 +1,25 @@
+{
+  "name": "kindcircle",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Krishnendhu05/KindCircle.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Krishnendhu05/KindCircle/issues"
+  },
+  "homepage": "https://github.com/Krishnendhu05/KindCircle#readme",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.95.3",
+    "express": "^5.2.1"
+  }
+}
