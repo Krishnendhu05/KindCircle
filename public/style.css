@@ -2,6 +2,7 @@
 
 body {
     font-family: 'Plus Jakarta Sans', sans-serif;
+    margin: 0;
 }
 
 .bg-blue-mesh {
@@ -12,9 +13,18 @@ body {
 }
 
 .glass-card {
-    background: rgba(255,255,255,0.9);
+    background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(10px);
     border: 1px solid #f1f5f9;
+}
+
+.label-text {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #475569;
+    margin-bottom: 0.5rem;
+    margin-left: 0.25rem;
 }
 
 .input-field {
@@ -23,4 +33,21 @@ body {
     background: #f8fafc;
     border: 1px solid #e2e8f0;
     border-radius: 1rem;
+    outline: none;
+    transition: all 0.2s;
+}
+
+.input-field:focus {
+    border-color: #3b82f6;
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+.animate-in {
+    animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
