@@ -3,58 +3,56 @@
 <head>
 <meta charset="UTF-8">
 <title>KindCircle</title>
-
-<!-- Tailwind CDN -->
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-slate-50 text-slate-800">
 
 <!-- NAVBAR -->
-<nav class="bg-white shadow-sm px-8 py-4 flex justify-between items-center">
-  <h1 class="text-xl font-semibold">KindCircle</h1>
+<nav class="bg-white border-b px-8 py-4 flex justify-between items-center shadow-sm">
+  <h1 class="text-xl font-bold text-blue-600">KindCircle</h1>
 
-  <div class="space-x-6 text-sm">
-    <a href="/" class="font-medium">Home</a>
-    <a href="/profile.html">Profile</a>
+  <div class="space-x-6 text-sm font-medium">
+    <a href="/" class="hover:text-blue-600 transition">Home</a>
+    <a href="/profile.html" class="hover:text-blue-600 transition">Profile</a>
   </div>
 </nav>
 
 
-<!-- HEADER -->
-<section class="text-center py-12 bg-gradient-to-b from-white to-gray-50 border-b">
-  <h2 class="text-3xl font-semibold mb-2">
+<!-- HERO -->
+<section class="text-center py-14 bg-gradient-to-b from-blue-50 to-transparent">
+  <h2 class="text-3xl font-bold mb-2">
     Welcome to KindCircle
   </h2>
-  <p class="text-gray-500">
-    A simple community where people help each other.
+  <p class="text-slate-500">
+    A community where small acts create big impact.
   </p>
 </section>
 
 
-<!-- MAIN CONTENT -->
-<div class="max-w-6xl mx-auto grid grid-cols-3 gap-6 mt-8 px-4">
+<!-- MAIN -->
+<div class="max-w-6xl mx-auto grid grid-cols-3 gap-6 px-4">
 
-  <!-- LEFT SIDE -->
+  <!-- LEFT -->
   <div class="col-span-2">
 
-    <!-- CREATE POST CARD -->
-    <div class="bg-white p-6 rounded-2xl shadow-md border mb-6">
+    <!-- CREATE POST -->
+    <div class="bg-white p-6 rounded-2xl shadow-sm border mb-6 hover:shadow-md transition">
 
-      <h3 class="text-lg font-semibold mb-4">
+      <h3 class="text-lg font-semibold mb-4 text-blue-600">
         Create a Help Request
       </h3>
 
       <input id="title"
-        class="w-full border rounded-lg p-2 mb-3 focus:outline-none focus:ring"
+        class="w-full border border-slate-200 rounded-xl p-3 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-200"
         placeholder="Title">
 
       <textarea id="description"
-        class="w-full border rounded-lg p-2 mb-4 focus:outline-none focus:ring"
+        class="w-full border border-slate-200 rounded-xl p-3 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-200"
         placeholder="Describe your request"></textarea>
 
       <button onclick="createPost()"
-        class="bg-black text-white px-5 py-2 rounded-lg hover:opacity-90">
+        class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-xl font-medium transition shadow-sm">
         Post Request
       </button>
 
@@ -62,7 +60,6 @@
 
     <!-- FEED -->
     <h3 class="text-lg font-semibold mb-4">Community Feed</h3>
-
     <div id="feed" class="space-y-4"></div>
 
   </div>
@@ -72,17 +69,17 @@
   <!-- RIGHT SIDEBAR -->
   <div class="space-y-6">
 
-    <div class="bg-white p-5 rounded-xl shadow-sm">
-      <h4 class="font-semibold mb-2">Spread Kindness</h4>
-      <p class="text-sm text-gray-500">
-        Help someone today and build a positive community.
+    <div class="bg-white p-5 rounded-xl border shadow-sm hover:shadow-md transition">
+      <h4 class="font-semibold text-emerald-600 mb-2">Spread Kindness 🌱</h4>
+      <p class="text-sm text-slate-500">
+        Helping others earns coins and builds community trust.
       </p>
     </div>
 
-    <div class="bg-white p-5 rounded-xl shadow-sm">
-      <h4 class="font-semibold mb-2">Today's Idea</h4>
-      <p class="text-sm text-gray-500">
-        Check in on someone who might need support.
+    <div class="bg-white p-5 rounded-xl border shadow-sm hover:shadow-md transition">
+      <h4 class="font-semibold text-blue-600 mb-2">Today's Idea 💡</h4>
+      <p class="text-sm text-slate-500">
+        Offer help to someone struggling with assignments.
       </p>
     </div>
 
@@ -91,35 +88,34 @@
 </div>
 
 
-<!-- ================= TOAST POPUP ================= -->
+
+<!-- TOAST -->
 <div id="toast"
-class="fixed top-5 right-5 bg-green-500 text-white px-4 py-2 rounded hidden shadow-lg">
+class="fixed top-5 right-5 bg-emerald-500 text-white px-5 py-3 rounded-xl hidden shadow-lg font-medium">
 </div>
 
 
 
-<!-- ================= CHAT BOX ================= -->
+<!-- CHAT BOX -->
 <div id="chatBox"
-class="fixed bottom-4 right-4 w-80 bg-white shadow-lg rounded-xl p-4 hidden border">
+class="fixed bottom-4 right-4 w-80 bg-white shadow-xl rounded-2xl p-4 hidden border">
 
-<h3 class="font-semibold mb-2">Chat</h3>
+<h3 class="font-semibold mb-2 text-blue-600">Chat</h3>
 
 <div id="messages"
-class="h-40 overflow-y-auto mb-2 border p-2 rounded"></div>
+class="h-44 overflow-y-auto mb-2 border rounded-lg p-2 bg-slate-50"></div>
 
 <input id="chatInput"
-class="w-full border p-2 mb-2 rounded"
+class="w-full border p-2 mb-2 rounded-lg focus:ring-2 focus:ring-blue-200"
 placeholder="Type message">
 
 <button onclick="sendMessage()"
-class="bg-black text-white px-3 py-1 rounded w-full">
+class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg w-full transition">
 Send
 </button>
 
 </div>
 
-
-<!-- SCRIPT -->
 <script src="script.js"></script>
 
 </body>
