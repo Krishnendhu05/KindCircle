@@ -16,13 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const userEmail = localStorage.getItem('userEmail');
     const userName = localStorage.getItem('userName');
 
-    // Redirect if not logged in - Critical for security
     if (!userEmail) {
         window.location.href = 'login.html'; 
         return;
     }
 
-    // Set UI elements
     if (welcomeTitle) welcomeTitle.innerText = `Welcome, ${userName || 'Student'}!`;
     updateStats(userEmail);
 
@@ -61,10 +59,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 6. LOAD AVAILABLE TASKS (To help others)
+    // 6. LOAD AVAILABLE TASKS
     window.loadAvailableTasks = async () => {
         taskFeed.classList.remove('hidden');
-        taskFeed.innerHTML = '<h2 class="text-2xl font-black text-slate-800 mb-6">Loading Tasks...</h2>';
+        taskFeed.innerHTML = '<h2 class="text-2xl font-black text-slate-800 mb-6 italic">Searching for opportunities...</h2>';
 
         const { data: tasks, error } = await supabaseClient
             .from('tasks')
@@ -82,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (tasks.length === 0) {
             taskFeed.innerHTML += `
-                <div class="p-10 text-center bg-slate-50 rounded-[2rem] border-2 border-dashed border-slate-200">
+                <div class="p-10 text-center bg-white/50 rounded-[2rem] border-2 border-dashed border-slate-200">
                     <p class="text-slate-500 italic">No open requests right now. Check back later!</p>
                 </div>`;
             return;
@@ -141,11 +139,31 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // 8. LOGOUT - Updated to clear storage thoroughly
+    // 8. CHAT TOGGLE LOGIC (Planning Phase)
+    window.toggleChat = () => {
+        const chatPreview = document.getElementById('chat-preview');
+        const chatIcon = document.getElementById('chat-icon');
+        const closeIcon = document.getElementById('close-chat-icon');
+
+        if (chatPreview && chatIcon && closeIcon) {
+            const isHidden = chatPreview.classList.contains('hidden');
+            if (isHidden) {
+                chatPreview.classList.remove('hidden');
+                chatIcon.classList.add('hidden');
+                closeIcon.classList.remove('hidden');
+            } else {
+                chatPreview.classList.add('hidden');
+                chatIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            }
+        }
+    };
+
+    // 9. LOGOUT
     window.logout = () => {
         localStorage.removeItem('userEmail');
         localStorage.removeItem('userName');
-        localStorage.removeItem('kindcircleUser'); // Clear potential alternate keys
+        localStorage.removeItem('kindcircleUser');
         window.location.href = 'login.html'; 
     };
 
@@ -153,7 +171,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (logoutBtn) logoutBtn.addEventListener('click', window.logout);
 });
 
-// Helper function to update stats cards
 async function updateStats(email) {
     const { data } = await supabaseClient
         .from('members')
