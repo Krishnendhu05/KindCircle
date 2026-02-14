@@ -127,6 +127,11 @@ app.get("/chat/:postId", async (req,res)=>{
 
 
 // ⚠️ STATIC LAST
+// ===== DEFAULT ROUTE → LOGIN PAGE =====
+app.get("/", (req,res)=>{
+    res.sendFile(__dirname + "/public/login.html");
+});
+
 app.use(express.static("public"));
 
 app.listen(3000,()=>{

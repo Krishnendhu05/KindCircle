@@ -2,32 +2,80 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Profile</title>
+<title>KindCircle | Profile</title>
+
+<!-- Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<!-- Tailwind -->
 <script src="https://cdn.tailwindcss.com"></script>
+
 </head>
 
 <body class="bg-slate-50 text-slate-800">
 
+<!-- NAVBAR -->
 <nav class="bg-white border-b px-8 py-4 shadow-sm flex justify-between">
-<h1 class="font-bold text-blue-600">KindCircle</h1>
-<a href="/" class="hover:text-blue-600">Home</a>
+    <h1 class="font-bold text-blue-600 text-lg">KindCircle</h1>
+    <a href="index.html" class="hover:text-blue-600">Home</a>
 </nav>
 
-<div class="max-w-xl mx-auto mt-10">
 
-<div class="bg-white rounded-2xl shadow-sm border p-8 text-center">
+<!-- PROFILE SECTION -->
+<div class="max-w-4xl mx-auto mt-14 px-4">
 
-<div class="w-24 h-24 bg-blue-100 rounded-full mx-auto mb-4 flex items-center justify-center text-blue-600 text-3xl font-bold">
+<div class="bg-white rounded-3xl shadow-md border p-10">
+
+<div class="grid grid-cols-2 gap-10 items-center">
+
+<!-- LEFT SIDE -->
+<div>
+
+<div class="flex items-center gap-6 mb-8">
+
+<!-- Avatar -->
+<div id="avatar"
+class="w-28 h-28 rounded-full bg-gradient-to-br from-blue-100 to-blue-50 
+flex items-center justify-center text-blue-600 text-3xl font-bold shadow-inner">
 👤
 </div>
 
-<h2 id="name" class="text-xl font-bold mb-2">User Name</h2>
+<div>
+<h2 id="name" class="text-2xl font-bold">Loading...</h2>
+<p id="email" class="text-slate-500 text-sm">Loading...</p>
+</div>
 
-<p class="text-slate-500 mb-4">Community Member</p>
+</div>
 
-<div class="bg-emerald-50 border rounded-xl p-4">
-<p class="text-sm text-slate-500">Coins Earned</p>
-<h3 id="points" class="text-3xl font-bold text-emerald-600">0</h3>
+<div class="bg-blue-50 border rounded-xl p-5 text-sm text-slate-600">
+🌱 Helping others builds a stronger community.
+</div>
+
+</div>
+
+
+<!-- RIGHT SIDE : COINS -->
+<div>
+
+<div class="bg-gradient-to-br from-emerald-50 to-white border rounded-2xl p-10 text-center shadow-sm">
+
+<p class="text-slate-500 text-sm mb-2">
+Reward Coins 🪙
+</p>
+
+<h3 id="points"
+class="text-6xl font-bold text-emerald-600 mb-4">
+0
+</h3>
+
+<p class="text-xs text-slate-400">
+Earn coins by helping others in KindCircle
+</p>
+
+</div>
+
+</div>
+
 </div>
 
 </div>
