@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | KindCircle</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="bg-blue-mesh min-h-screen">
+
+    <nav class="flex items-center justify-between px-8 py-6 bg-white/50 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100">
+        <div class="flex items-center gap-2">
+            <i class="fa-solid fa-graduation-cap text-blue-600 text-2xl"></i>
+            <span class="text-2xl font-black text-slate-800 tracking-tight">KindCircle</span>
+        </div>
+        <div class="flex items-center gap-8 font-bold text-slate-600">
+            <a href="home.html" class="text-blue-600">Home</a>
+            <a href="profile.html" class="hover:text-blue-600 transition-colors">Profile</a>
+            <button id="logout-btn" class="bg-red-50 text-red-600 px-4 py-2 rounded-xl hover:bg-red-100 transition-all">Logout</button>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto p-6 space-y-10">
+        
+        <section class="text-center py-10">
+            <h1 id="welcome-title" class="text-5xl font-black text-slate-800 tracking-tight">Welcome to KindCircle</h1>
+            <p class="text-slate-500 mt-4 text-lg max-w-2xl mx-auto font-medium leading-relaxed">
+                A community where college students support each other. Ask for a hand, offer your help, and grow together.
+            </p>
+        </section>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="glass-card p-6 rounded-[2rem] flex items-center gap-4 bg-white shadow-sm border border-white">
+                <div class="bg-yellow-100 p-4 rounded-2xl text-yellow-600">
+                    <i class="fa-solid fa-coins text-2xl"></i>
+                </div>
+                <div>
+                    <p class="text-slate-500 text-sm font-bold uppercase tracking-wider">Your Balance</p>
+                    <h3 class="text-2xl font-black text-slate-800"><span id="coin-count">0</span> Coins</h3>
+                </div>
+            </div>
+
+            <div class="glass-card p-6 rounded-[2rem] flex items-center gap-4 bg-white shadow-sm border border-white">
+                <div class="bg-blue-100 p-4 rounded-2xl text-blue-600">
+                    <i class="fa-solid fa-check-double text-2xl"></i>
+                </div>
+                <div>
+                    <p class="text-slate-500 text-sm font-bold uppercase tracking-wider">Tasks Completed</p>
+                    <h3 class="text-2xl font-black text-slate-800"><span id="task-count">0</span></h3>
+                </div>
+            </div>
+
+            <div class="glass-card p-6 rounded-[2rem] bg-gradient-to-br from-blue-600 to-blue-700 text-white italic relative overflow-hidden shadow-lg flex items-center">
+                <p class="relative z-10 font-medium">"No act of kindness, no matter how small, is ever wasted."</p>
+                <i class="fa-solid fa-quote-right absolute -bottom-2 -right-2 text-6xl opacity-10"></i>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <button id="open-post-modal" class="group glass-card p-8 rounded-[2.5rem] text-left hover:border-blue-300 bg-white border border-white transition-all active:scale-[0.98] shadow-sm">
+                <div class="bg-blue-50 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                    <i class="fa-solid fa-hand-holding-heart text-3xl"></i>
+                </div>
+                <h2 class="text-2xl font-black text-slate-800">Ask for Help</h2>
+                <p class="text-slate-500 mt-2 leading-relaxed">Need a book? A tutor? Or just a coffee? Post it here for the community to see.</p>
+            </button>
+
+            <button onclick="loadAvailableTasks()" class="group glass-card p-8 rounded-[2.5rem] text-left hover:border-green-300 bg-white border border-white transition-all active:scale-[0.98] shadow-sm">
+                <div class="bg-green-50 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-green-600 group-hover:text-white transition-all">
+                    <i class="fa-solid fa-list-check text-3xl"></i>
+                </div>
+                <h2 class="text-2xl font-black text-slate-800">Help Someone</h2>
+                <p class="text-slate-500 mt-2 leading-relaxed">Browse pending requests and earn 5 Kindness Coins for every task you fulfill.</p>
+            </button>
+        </div>
+
+        <div id="task-feed" class="space-y-4 hidden pb-20 animate-in">
+            </div>
+
+    </main>
+
+    <div id="post-modal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm hidden flex items-center justify-center z-[100] p-4">
+        <div class="bg-white w-full max-w-lg rounded-[2.5rem] p-10 shadow-2xl relative">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-black text-slate-800">New Request</h2>
+                <button id="close-modal" class="text-slate-400 hover:text-red-500 transition-colors">
+                    <i class="fa-solid fa-circle-xmark text-2xl"></i>
+                </button>
+            </div>
+            
+            <form id="help-form" class="space-y-5">
+                <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-2 ml-1">What do you need help with?</label>
+                    <input type="text" id="task-title" placeholder="e.g. Need Biology Lab Manual" class="w-full p-4 bg-slate-50 rounded-2xl border-none focus:ring-2 focus:ring-blue-500 outline-none" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-2 ml-1">Detailed Description</label>
+                    <textarea id="task-desc" rows="4" placeholder="Explain what you need and when..." class="w-full p-4 bg-slate-50 rounded-2xl border-none focus:ring-2 focus:ring-blue-500 outline-none" required></textarea>
+                </div>
+                
+                <div class="bg-blue-50 p-4 rounded-2xl flex items-start gap-3 mb-4">
+                    <i class="fa-solid fa-circle-info text-blue-600 mt-1"></i>
+                    <p class="text-xs text-blue-700 font-bold leading-relaxed">Posting a request is free. The person who helps you will earn 5 Kindness Coins!</p>
+                </div>
+
+                <div class="flex gap-4">
+                    <button type="button" onclick="document.getElementById('post-modal').classList.add('hidden')" class="flex-1 py-4 font-bold text-slate-500">Cancel</button>
+                    <button type="submit" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-2xl shadow-lg shadow-blue-100 transition-all active:scale-95">Post Request</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="home.js"></script>
+</body>
+</html>
