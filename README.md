@@ -63,21 +63,22 @@ KindCircle/
 # ✨ Features
 
 ## 🔐 Login System
-Users log in using college email and passkey.  
+Users log in using college email and college unique passkey.  
 Session is stored using localStorage.
 
 ## 🏠 Home Dashboard
 Users can:
 - View coin balance
-- Create help posts
-- Accept tasks
-- Browse community feed
+- View total tasks completed
+- Create Ask for help posts
+- Accept tasks of others
+- chatbox tool
 
 ## 📋 Task System
 Each post has a status:
 - `open`
 - `taken`
-
+With the help of database we will know who created as well as accepted the task.
 Only another user can accept a task — creators cannot help their own posts.
 
 ## 🪙 Reward Coins
@@ -91,6 +92,16 @@ members
 - passkey
 - coins
 - tasks_completed
+```
+```
+tasks
+- id
+- title
+- description
+- created_by
+- status
+- accepted_by
+- created_at
 ```
 
 ## 👤 Profile Page
@@ -172,26 +183,19 @@ passkey
 coins
 tasks_completed
 ```
+## tasks
+```
+tasks
+- id
+- title
+- description
+- created_by
+- status
+- accepted_by
+- created_at
+```
 
-## posts
-```
-id
-title
-description
-creator_email
-helper_email
-helped
-created_at
-```
 
-## messages
-```
-id
-post_id
-sender
-message
-created_at
-```
 
 ---
 
@@ -236,7 +240,7 @@ GET /chat/:postId
 # 👥 Team
 
 - Krishnendhu S — Backend + Integration
-- Anitta Joffy — Authentication + UI
+- Anitta Joffy — Authentication + UI + Backend
 
 ---
 
