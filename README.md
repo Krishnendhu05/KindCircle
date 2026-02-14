@@ -259,3 +259,6 @@ MIT License
 # ❤️ Purpose
 
 KindCircle encourages small acts of kindness inside college communities by rewarding collaboration rather than competition.
+
+PROJECT URL: https://kind-circle-tau.vercel.app/
+YOUTUBE DEMO URL : https://youtu.be/yvVyWL-szKs?si=kMten77C421HIDiR
